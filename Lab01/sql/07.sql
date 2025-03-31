@@ -58,10 +58,10 @@ CREATE TABLE AD.Buy (
       INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
   );
 
--- Tabla FoodxPeople
-CREATE TABLE AD.FoodxPeople (
-    food_id  NUMBER CONSTRAINT fk_FoodxPeople_Food REFERENCES AD.Food(food_id),
-    buy_id   NUMBER CONSTRAINT fk_FoodxPeople_Buy REFERENCES AD.Buy(buy_id),
+-- Tabla FoodxBuy
+CREATE TABLE AD.FoodxBuy (
+    food_id  NUMBER CONSTRAINT fk_FoodxBuy_Food REFERENCES AD.Food(food_id),
+    buy_id   NUMBER CONSTRAINT fk_FoodxBuy_Buy REFERENCES AD.Buy(buy_id),
     amount   NUMBER CONSTRAINT FoodxPeople_amount_nn NOT NULL,
     CONSTRAINT pk_FoodxPeople PRIMARY KEY (food_id, buy_id) 
     USING INDEX TABLESPACE AD_Index
