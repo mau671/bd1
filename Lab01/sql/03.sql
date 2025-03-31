@@ -38,7 +38,3 @@ STORAGE (
     MINEXTENTS 1
     MAXEXTENTS 5
 );
-
--- Otorgar permisos de referencia para el esquema GE
-GRANT REFERENCES ON GE.Phone TO GE;
-GRANT REFERENCES ON GE.People TO GE;

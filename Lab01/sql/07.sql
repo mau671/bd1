@@ -7,7 +7,7 @@ CREATE TABLE AD.Food_Type (
                   STORAGE (
                       INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
                   ),
-    name          VARCHAR2(50) CONSTRAINT nn_Food_Type_name NOT NULL
+    name          VARCHAR2(50) CONSTRAINT Food_Type_name_nn NOT NULL
 ) TABLESPACE AD_Data
   STORAGE (
       INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
@@ -20,9 +20,9 @@ CREATE TABLE AD.People (
                    STORAGE (
                        INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
                    ),
-    first_name     VARCHAR2(50) CONSTRAINT nn_People_first_name NOT NULL,
+    first_name     VARCHAR2(50) CONSTRAINT people_firstName_nn NOT NULL,
     second_name    VARCHAR2(50),
-    first_surname  VARCHAR2(50) CONSTRAINT nn_People_first_surname NOT NULL,
+    first_surname  VARCHAR2(50) CONSTRAINT people_firstSurname_nn NOT NULL,
     second_surname VARCHAR2(50)
 ) TABLESPACE AD_Data
   STORAGE (
@@ -36,8 +36,8 @@ CREATE TABLE AD.Food (
                   STORAGE (
                       INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
                   ),
-    name          VARCHAR2(100) CONSTRAINT nn_Food_name NOT NULL,
-    price         NUMBER(10,2) CONSTRAINT chk_Food_price CHECK (price > 0) NOT NULL,
+    name          VARCHAR2(100) CONSTRAINT Food_name_nn NOT NULL,
+    price         NUMBER(10,2) CONSTRAINT Food_price_chk CHECK (price > 0) NOT NULL,
     food_type_id  NUMBER CONSTRAINT fk_Food_Food_Type REFERENCES AD.Food_Type(food_type_id)
 ) TABLESPACE AD_Data
   STORAGE (
@@ -62,7 +62,7 @@ CREATE TABLE AD.Buy (
 CREATE TABLE AD.FoodxPeople (
     food_id  NUMBER CONSTRAINT fk_FoodxPeople_Food REFERENCES AD.Food(food_id),
     buy_id   NUMBER CONSTRAINT fk_FoodxPeople_Buy REFERENCES AD.Buy(buy_id),
-    amount   NUMBER CONSTRAINT nn_FoodxPeople_amount NOT NULL,
+    amount   NUMBER CONSTRAINT FoodxPeople_amount_nn NOT NULL,
     CONSTRAINT pk_FoodxPeople PRIMARY KEY (food_id, buy_id) 
     USING INDEX TABLESPACE AD_Index
     STORAGE (
