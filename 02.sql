@@ -1,14 +1,14 @@
 -- 2. Crear el esquema GE
-CREATE USER ge 
+CREATE USER GE 
     IDENTIFIED BY ge
     DEFAULT TABLESPACE GE_Data
     QUOTA 10M ON GE_Data
     TEMPORARY TABLESPACE temp
     QUOTA 5M ON SYSTEM;
 
-GRANT CONNECT to ge;
-GRANT CREATE SESSION to ge;
-GRANT CREATE TABLE to ge;
+GRANT CONNECT to GE;
+GRANT CREATE SESSION to GE;
+GRANT CREATE TABLE to GE;
 
 -- a. ¿Se pueden crear varios esquemas en la misma BD?
 -- Sí, en Oracle un esquema es equivalente a un usuario con objetos propios.
