@@ -1,25 +1,74 @@
 -- 7. Crear las tablas del esquema AD según el requerimiento
+
+-- Tabla Food_Type
+CREATE TABLE AD.Food_Type (
+    food_type_id  NUMBER CONSTRAINT pk_Food_Type PRIMARY KEY 
+                  USING INDEX TABLESPACE AD_Index 
+                  STORAGE (
+                      INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+                  ),
+    name          VARCHAR2(50) CONSTRAINT nn_Food_Type_name NOT NULL
+) TABLESPACE AD_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
+
+-- Tabla People
+CREATE TABLE AD.People (
+    id_people      NUMBER CONSTRAINT pk_People PRIMARY KEY 
+                   USING INDEX TABLESPACE AD_Index 
+                   STORAGE (
+                       INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+                   ),
+    first_name     VARCHAR2(50) CONSTRAINT nn_People_first_name NOT NULL,
+    second_name    VARCHAR2(50),
+    first_surname  VARCHAR2(50) CONSTRAINT nn_People_first_surname NOT NULL,
+    second_surname VARCHAR2(50)
+) TABLESPACE AD_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
+
+-- Tabla Food
 CREATE TABLE AD.Food (
-    food_id NUMBER PRIMARY KEY,
-    name VARCHAR2(100) NOT NULL,
-    price NUMBER(10,2) NOT NULL CHECK (price > 0)
-) TABLESPACE GE_Data;
+    food_id       NUMBER CONSTRAINT pk_Food PRIMARY KEY 
+                  USING INDEX TABLESPACE AD_Index 
+                  STORAGE (
+                      INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+                  ),
+    name          VARCHAR2(100) CONSTRAINT nn_Food_name NOT NULL,
+    price         NUMBER(10,2) CONSTRAINT chk_Food_price CHECK (price > 0) NOT NULL,
+    food_type_id  NUMBER CONSTRAINT fk_Food_Food_Type REFERENCES AD.Food_Type(food_type_id)
+) TABLESPACE AD_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
 
-CREATE TABLE AD.Order (
-    order_id NUMBER PRIMARY KEY,
-    person_id NUMBER,
-    order_date DATE DEFAULT SYSDATE,
-    total_price NUMBER(10,2) NOT NULL CHECK (total_price >= 0),
-    CONSTRAINT fk_order_person FOREIGN KEY (person_id) REFERENCES GE.People(person_id)
-) TABLESPACE GE_Data;
+-- Tabla Buy
+CREATE TABLE AD.Buy (
+    buy_id      NUMBER CONSTRAINT pk_Buy PRIMARY KEY 
+                USING INDEX TABLESPACE AD_Index 
+                STORAGE (
+                    INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+                ),
+    date_of_buy DATE DEFAULT SYSDATE NOT NULL,
+    id_person   NUMBER CONSTRAINT fk_Buy_People REFERENCES AD.People(id_people)
+) TABLESPACE AD_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
 
-CREATE TABLE AD.OrderDetail (
-    order_detail_id NUMBER PRIMARY KEY,
-    order_id NUMBER,
-    food_id NUMBER,
-    quantity NUMBER CHECK (quantity > 0),
-    price_per_item NUMBER(10,2) NOT NULL CHECK (price_per_item > 0),
-    total_price NUMBER(10,2) NOT NULL CHECK (total_price >= 0),
-    CONSTRAINT fk_orderdetail_order FOREIGN KEY (order_id) REFERENCES AD.Order(order_id),
-    CONSTRAINT fk_orderdetail_food FOREIGN KEY (food_id) REFERENCES AD.Food(food_id)
-) TABLESPACE GE_Data;
+-- Tabla FoodxPeople
+CREATE TABLE AD.FoodxPeople (
+    food_id  NUMBER CONSTRAINT fk_FoodxPeople_Food REFERENCES AD.Food(food_id),
+    buy_id   NUMBER CONSTRAINT fk_FoodxPeople_Buy REFERENCES AD.Buy(buy_id),
+    amount   NUMBER CONSTRAINT nn_FoodxPeople_amount NOT NULL,
+    CONSTRAINT pk_FoodxPeople PRIMARY KEY (food_id, buy_id) 
+    USING INDEX TABLESPACE AD_Index
+    STORAGE (
+        INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+    )
+) TABLESPACE AD_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
