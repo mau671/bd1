@@ -1,0 +1,103 @@
+
+-- Crear los tablespaces GE_Data y GE_Index
+CREATE TABLESPACE GE_Data
+    DATAFILE '/u01/app/oracle/oradata/XE/gedata01.dbf'
+    SIZE 10M
+    REUSE
+    AUTOEXTEND ON
+    NEXT 512k
+    MAXSIZE 200M;
+
+CREATE TABLESPACE GE_Index
+    DATAFILE '/u01/app/oracle/oradata/XE/geindex01.dbf'
+    SIZE 10M
+    REUSE
+    AUTOEXTEND ON
+    NEXT 512k
+    MAXSIZE 200M;
+
+-- 2. Crear el esquema GE
+CREATE USER GE 
+    IDENTIFIED BY ge
+    DEFAULT TABLESPACE GE_Data
+    QUOTA 10M ON GE_Data
+    TEMPORARY TABLESPACE temp
+    QUOTA 5M ON SYSTEM
+    QUOTA 10M ON GE_Index;
+
+GRANT CONNECT to GE;
+GRANT CREATE SESSION to GE;
+GRANT CREATE TABLE to GE;
+
+-- ============================================
+-- 1. Tabla TYPE_PHONE
+-- ============================================
+CREATE TABLE GE.TYPE_PHONE (
+    id    NUMBER CONSTRAINT pk_TYPE_PHONE PRIMARY KEY
+            USING INDEX TABLESPACE GE_Index
+            STORAGE (
+                INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+            ),
+    name  VARCHAR2(50) CONSTRAINT type_phone_name_nn NOT NULL
+) TABLESPACE GE_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
+
+-- ============================================
+-- 2. Tabla PHONE
+-- ============================================
+CREATE TABLE GE.PHONE (
+    id             NUMBER CONSTRAINT pk_PHONE PRIMARY KEY
+                     USING INDEX TABLESPACE GE_Index
+                     STORAGE (
+                         INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+                     ),
+    number         VARCHAR2(20) CONSTRAINT phone_number_nn NOT NULL,
+    id_type_phone  NUMBER CONSTRAINT phone_id_type_phone_nn NOT NULL,
+    CONSTRAINT fk_PHONE_TYPE_PHONE 
+        FOREIGN KEY (id_type_phone) REFERENCES GE.TYPE_PHONE(id)
+) TABLESPACE GE_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
+
+-- ============================================
+-- 3. Tabla PEOPLE
+-- ============================================
+CREATE TABLE GE.PEOPLE (
+    id             NUMBER CONSTRAINT pk_PEOPLE PRIMARY KEY
+                     USING INDEX TABLESPACE GE_Index
+                     STORAGE (
+                         INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+                     ),
+    first_name     VARCHAR2(50) CONSTRAINT people_first_name_nn NOT NULL,
+    second_name    VARCHAR2(50),
+    first_surname  VARCHAR2(50) CONSTRAINT people_first_surname_nn NOT NULL,
+    second_surname VARCHAR2(50),
+    salary         NUMBER(10,2),
+    birthday       DATE
+) TABLESPACE GE_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
+
+-- ============================================
+-- 4. Tabla PHONEXPEOPLE
+-- ============================================
+CREATE TABLE GE.PHONEXPEOPLE (
+    id_people  NUMBER CONSTRAINT phonexpeople_id_people_nn NOT NULL,
+    id_phone   NUMBER CONSTRAINT phonexpeople_id_phone_nn NOT NULL,
+    CONSTRAINT pk_PHONEXPEOPLE PRIMARY KEY (id_people, id_phone)
+       USING INDEX TABLESPACE GE_Index
+       STORAGE (
+           INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+       ),
+    CONSTRAINT fk_PHONEXPEOPLE_PEOPLE
+       FOREIGN KEY (id_people) REFERENCES GE.PEOPLE(id),
+    CONSTRAINT fk_PHONEXPEOPLE_PHONE
+       FOREIGN KEY (id_phone) REFERENCES GE.PHONE(id)
+) TABLESPACE GE_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
