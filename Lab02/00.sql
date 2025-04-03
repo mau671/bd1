@@ -53,7 +53,7 @@ CREATE TABLE GE.PHONE (
                      STORAGE (
                          INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
                      ),
-    number         VARCHAR2(20) CONSTRAINT phone_number_nn NOT NULL,
+    phone_number   VARCHAR2(20) CONSTRAINT phone_number_nn NOT NULL,
     id_type_phone  NUMBER CONSTRAINT phone_id_type_phone_nn NOT NULL,
     CONSTRAINT fk_PHONE_TYPE_PHONE 
         FOREIGN KEY (id_type_phone) REFERENCES GE.TYPE_PHONE(id)
@@ -61,6 +61,7 @@ CREATE TABLE GE.PHONE (
   STORAGE (
       INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
   );
+
 
 -- ============================================
 -- 3. Tabla PEOPLE
