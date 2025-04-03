@@ -20,30 +20,30 @@ INSERT INTO GE.TYPE_PHONE (id, name)
 VALUES (4, 'Fax');
 
 -- Inserción de 8 teléfonos en GE.PHONE.
--- Se asume que el campo 'phone_numer' contiene el número de teléfono,
+-- Se asume que el campo 'phone_number' contiene el número de teléfono,
 -- y 'id_type_phone' referencia el tipo registrGEo.
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (1, '555-1234', 1);
 
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (2, '555-5678', 2);
 
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (3, '555-9012', 3);
 
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (4, '555-3456', 1);
 
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (5, '555-7890', 2);
 
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (6, '555-2345', 3);
 
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (7, '555-6789', 4);
 
-INSERT INTO GE.PHONE (id, phone_numer, id_type_phone)
+INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (8, '555-0123', 1);
 
 COMMIT;
