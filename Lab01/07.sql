@@ -62,8 +62,8 @@ CREATE TABLE AD.Buy (
 CREATE TABLE AD.FoodxBuy (
     food_id  NUMBER CONSTRAINT fk_FoodxBuy_Food REFERENCES AD.Food(food_id),
     buy_id   NUMBER CONSTRAINT fk_FoodxBuy_Buy REFERENCES AD.Buy(buy_id),
-    amount   NUMBER CONSTRAINT FoodxPeople_amount_nn NOT NULL,
-    CONSTRAINT pk_FoodxPeople PRIMARY KEY (food_id, buy_id) 
+    amount   NUMBER CONSTRAINT FoodxBuy_amount_nn NOT NULL,
+    CONSTRAINT pk_FoodxBuy PRIMARY KEY (food_id, buy_id) 
     USING INDEX TABLESPACE AD_Index
     STORAGE (
         INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
