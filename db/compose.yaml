@@ -1,0 +1,44 @@
+# Este archivo docker-compose define la configuración de oracle db 11g r2 y especifica
+# los volúmenes y redes necesarios para su funcionamiento.
+#
+# Servicio: oracle-db
+# - Imagen: gvenzl/oracle-xe:11 (Oracle Express Edition 11g)
+# - Container name: oracle-db
+# - Reinicia "unless-stopped"; el contenedor se reiniciará a menos que se detenga explícitamente.
+# - Ejecuta bajo el usuario "1000:1000".
+# - Variable de entorno:
+#   - ORACLE_PASSWORD: Establece la contraseña de la base de datos a "admin".
+# - Puertos:
+#   - Mapea el puerto local 1521 al puerto 1521 del contenedor, permitiendo conexiones a Oracle.
+# - Volumen:
+#   - Se monta el volumen "oracle_data" en /opt/oracle/oradata para la persistencia de datos.
+# - Redes:
+#   - Se asocia a la red "database" con la IP estática 172.20.0.2.
+#
+#
+# Redes:
+# - database: Red personalizada con driver de tipo "bridge".
+#   - IPAM (IP Address Management) configurado con:
+#     - Subred: 172.20.0.0/16, lo que permite asignaciones de IP estáticas para los contenedores.
+services:
+  oracle-db:
+    image: gvenzl/oracle-xe:11
+    container_name: oracle-db
+    restart: unless-stopped
+    user: "1000:1000"
+    environment:
+      ORACLE_PASSWORD: "admin"
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./data/:/u01/app/oracle/oradata
+    networks:
+      database:
+        ipv4_address: 172.20.0.2
+
+networks:
+  database:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
