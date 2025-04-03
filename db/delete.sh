@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the oracle data directory
-ORACLE_DATA_DIR="./data/oracle"
+ORACLE_DATA_DIR="./data/"
 
 # Stop all containers defined in the docker-compose file
 echo "Stopping Docker containers..."
