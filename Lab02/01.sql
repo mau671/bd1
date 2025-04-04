@@ -6,7 +6,7 @@
 --
 -- a. La creación de la tabla corresponde al lenguaje DDL (Data Definition Language) de Oracle.
 -- b. La inserción corresponde al lenguaje DML (Data Manipulation Language) de Oracle.
--- c. Al salir y volver a entrar en la BD, los datos estarán persistidos (si se ha realizGEo COMMIT)
+-- c. Al salir y volver a entrar en la BD, los datos estarán persistidos (si se ha realizado COMMIT)
 --    porque Oracle almacena de forma permanente los datos comprometidos en la base de datos.
 
 -- Asegurarse de estar en el esquema GE y que la tabla PEOPLE ya fue creGEa.
