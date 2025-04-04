@@ -1,0 +1,2 @@
+UPDATE people SET salary = salary * 1.15 WHERE EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM birthday)>30;
+COMMIT;

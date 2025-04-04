@@ -102,3 +102,61 @@ CREATE TABLE GE.PHONEXPEOPLE (
   STORAGE (
       INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
   );
+-- ============================================
+-- 5. Tabla TYPE_PEOPLE
+-- ============================================
+CREATE TABLE TYPE_PEOPLE (
+    id    NUMBER CONSTRAINT pk_TYPE_PEOPLE PRIMARY KEY
+            USING INDEX TABLESPACE GE_Index
+            STORAGE (
+                INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+            ),
+    name  VARCHAR2(50) CONSTRAINT type_people_name_nn NOT NULL
+) TABLESPACE GE_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
+
+-- ============================================
+-- 6. Relación PEOPLE - TYPE_PEOPLE
+-- ============================================
+ALTER TABLE PEOPLE ADD (
+    id_type_people NUMBER CONSTRAINT people_id_type_people_nn NOT NULL,
+    CONSTRAINT fk_PEOPLE_TYPE_PEOPLE 
+        FOREIGN KEY (id_type_people) REFERENCES TYPE_PEOPLE(id)
+);
+
+-- ============================================
+-- 7. Tabla PRODUCT
+-- ============================================
+CREATE TABLE PRODUCT (
+    id   NUMBER CONSTRAINT pk_PRODUCT PRIMARY KEY
+            USING INDEX TABLESPACE GE_Index
+            STORAGE (
+                INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+            ),
+    name VARCHAR2(100) CONSTRAINT product_name_nn NOT NULL
+) TABLESPACE GE_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
+
+-- ============================================
+-- 8. Tabla BUY (Relación PEOPLE - PRODUCT)
+-- ============================================
+CREATE TABLE BUY (
+    id_people  NUMBER CONSTRAINT buy_id_people_nn NOT NULL,
+    id_product NUMBER CONSTRAINT buy_id_product_nn NOT NULL,
+    CONSTRAINT pk_BUY PRIMARY KEY (id_people, id_product)
+       USING INDEX TABLESPACE GE_Index
+       STORAGE (
+           INITIAL 10K NEXT 10K MINEXTENTS 1 MAXEXTENTS UNLIMITED PCTINCREASE 0
+       ),
+    CONSTRAINT fk_BUY_PEOPLE
+       FOREIGN KEY (id_people) REFERENCES PEOPLE(id),
+    CONSTRAINT fk_BUY_PRODUCT
+       FOREIGN KEY (id_product) REFERENCES PRODUCT(id)
+) TABLESPACE GE_Data
+  STORAGE (
+      INITIAL 6144 NEXT 6144 MINEXTENTS 1 MAXEXTENTS 5
+  );
