@@ -9,7 +9,13 @@
 -- c. Al salir y volver a entrar en la BD, los datos estarán persistidos (si se ha realizGEo COMMIT)
 --    porque Oracle almacena de forma permanente los datos comprometidos en la base de datos.
 
--- Asegurarse de estar en el esquema GE y que la tabla PEOPLE ya fue creGEa.
+-- Asegurarse de estar en el esquema GE y que la tabla PEOPLE ya fue creada.
+
+-- Registro de tipos de personas
+INSERT INTO Type_People (id, name) VALUES (1, 'Employee');
+INSERT INTO Type_People (id, name) VALUES (2, 'Client');
+
+COMMIT;
 
 -- Inserciones para las 10 personas con salarios altos (salarios repetidos en pares)
 INSERT INTO GE.PEOPLE (id, first_name, second_name, first_surname, second_surname, salary, birthday, id_type_people)
