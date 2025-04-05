@@ -20,8 +20,8 @@ INSERT INTO GE.TYPE_PHONE (id, name)
 VALUES (4, 'Fax');
 
 -- Inserción de 8 teléfonos en GE.PHONE.
--- Se asume que el campo 'phone_number' contiene el número de teléfono,
--- y 'id_type_phone' referencia el tipo registrGEo.
+-- el campo 'phone_number' contiene el número de teléfono,
+-- y 'id_type_phone' referencia el tipo registrado.
 INSERT INTO GE.PHONE (id, phone_number, id_type_phone)
 VALUES (1, '555-1234', 1);
 
