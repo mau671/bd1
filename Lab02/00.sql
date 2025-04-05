@@ -105,7 +105,7 @@ CREATE TABLE GE.PHONEXPEOPLE (
 -- ============================================
 -- 5. Tabla TYPE_PEOPLE
 -- ============================================
-CREATE TABLE TYPE_PEOPLE (
+CREATE TABLE GE.TYPE_PEOPLE (
     id    NUMBER CONSTRAINT pk_TYPE_PEOPLE PRIMARY KEY
             USING INDEX TABLESPACE GE_Index
             STORAGE (
@@ -120,7 +120,7 @@ CREATE TABLE TYPE_PEOPLE (
 -- ============================================
 -- 6. Relación PEOPLE - TYPE_PEOPLE
 -- ============================================
-ALTER TABLE PEOPLE ADD (
+ALTER TABLE GE.PEOPLE ADD (
     id_type_people NUMBER CONSTRAINT people_id_type_people_nn NOT NULL,
     CONSTRAINT fk_PEOPLE_TYPE_PEOPLE 
         FOREIGN KEY (id_type_people) REFERENCES TYPE_PEOPLE(id)
@@ -129,7 +129,7 @@ ALTER TABLE PEOPLE ADD (
 -- ============================================
 -- 7. Tabla PRODUCT
 -- ============================================
-CREATE TABLE PRODUCT (
+CREATE TABLE GE.PRODUCT (
     id   NUMBER CONSTRAINT pk_PRODUCT PRIMARY KEY
             USING INDEX TABLESPACE GE_Index
             STORAGE (
@@ -144,7 +144,7 @@ CREATE TABLE PRODUCT (
 -- ============================================
 -- 8. Tabla BUY (Relación PEOPLE - PRODUCT)
 -- ============================================
-CREATE TABLE BUY (
+CREATE TABLE GE.BUY (
     id_people  NUMBER CONSTRAINT buy_id_people_nn NOT NULL,
     id_product NUMBER CONSTRAINT buy_id_product_nn NOT NULL,
     CONSTRAINT pk_BUY PRIMARY KEY (id_people, id_product)
