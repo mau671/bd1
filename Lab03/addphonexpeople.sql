@@ -1,0 +1,28 @@
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (1, 1); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (2, 2); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (3, 3); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (4, 4); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (5, 5); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (6, 6); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (7, 1); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (8, 8); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (9, 3); 
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (10, 4);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (12, 6);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (13, 1);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (14, 2);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (15, 3);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (16, 5);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (17, 4);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (18, 8);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (19, 6);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (20, 1);
+-- Agregar varios números a la misma persona
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (5, 1);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (5, 3);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (5, 6);
+
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (10, 1);
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (10, 8);
+
+INSERT INTO PHONEXPEOPLE (id_people, id_phone) VALUES (2, 6);
