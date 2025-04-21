@@ -23,7 +23,7 @@
 services:
   oracle-db:
     image: gvenzl/oracle-xe:11
-    container_name: oracle-db
+    container_name: oracle-db-labs
     restart: unless-stopped
     user: "1000:1000"
     environment:
@@ -34,11 +34,11 @@ services:
       - ./data/:/u01/app/oracle/oradata
     networks:
       database:
-        ipv4_address: 172.20.0.2
+        ipv4_address: 172.40.0.2
 
 networks:
   database:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/16
+        - subnet: 172.40.0.0/16
