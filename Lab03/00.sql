@@ -28,6 +28,7 @@ CREATE USER GE
 GRANT CONNECT to GE;
 GRANT CREATE SESSION to GE;
 GRANT CREATE TABLE to GE;
+GRANT CREATE VIEW to GE;
 
 -- ============================================
 -- 1. Tabla TYPE_PHONE

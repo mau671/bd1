@@ -1,7 +1,7 @@
 -- 05.sql
-SELECT p.*
+SELECT DISTINCT p.* 
 FROM GE.PEOPLE p
-JOIN GE.PHONEXPEOPLE pxp ON p.id = pxp.id_people
-JOIN GE.PHONE ph ON ph.id = pxp.id_phone
-JOIN GE.TYPE_PHONE tp ON tp.id = ph.id_type_phone
-WHERE LOWER(tp.name) = 'casa';
+INNER JOIN GE.PHONEXPEOPLE pp ON p.id = pp.id_people
+INNER JOIN GE.PHONE ph ON pp.id_phone = ph.id
+INNER JOIN GE.TYPE_PHONE tp ON ph.id_type_phone = tp.id
+WHERE tp.name = 'Casa';
