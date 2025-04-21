@@ -28,17 +28,15 @@ services:
     user: "1000:1000"
     environment:
       ORACLE_PASSWORD: "admin"
-    ports:
-      - "1521:1521"
     volumes:
       - ./data/:/u01/app/oracle/oradata
     networks:
-      database:
-        ipv4_address: 172.40.0.2
+      db-labs:
+        ipv4_address: 172.28.0.2
 
 networks:
-  database:
+  db-labs:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.40.0.0/16
+        - subnet: 172.28.0.0/16

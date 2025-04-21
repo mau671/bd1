@@ -1,0 +1,5 @@
+-- 06.sql
+CREATE OR REPLACE VIEW GE.people_less_3000 AS
+SELECT *
+FROM GE.PEOPLE
+WHERE salary < 3000;
