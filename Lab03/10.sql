@@ -13,7 +13,7 @@
 -- - PRODUCT: Información de productos
 --
 -- Filtros:
--- - id_type_people = 1: Solo se consideran registros de tipo Cliente
+-- - id_type_people = 2: Solo se consideran registros de tipo Cliente
 --
 -- Técnicas especiales:
 -- - DISTINCT: Evita duplicados si un cliente compró el mismo producto múltiples veces
@@ -39,7 +39,7 @@ FROM (
     JOIN   GE.CART          c  ON c.id        = b.id_cart
     JOIN   GE.PRODUCTXCART  pc ON pc.id_cart  = c.id
     JOIN   GE.PRODUCT       pr ON pr.id       = pc.id_product
-    WHERE  p.id_type_people = 1                     -- solo clientes
+    WHERE  p.id_type_people = 2                     -- solo clientes
 ) datos
 GROUP BY
     datos.id_cliente,

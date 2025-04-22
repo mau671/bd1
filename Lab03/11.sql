@@ -10,7 +10,7 @@
 -- - BUY: Registro de transacciones de compra
 --
 -- Filtros:
--- - id_type_people = 1: Solo se consideran registros de tipo Cliente
+-- - id_type_people = 2: Solo se consideran registros de tipo Cliente
 -- - HAVING COUNT(*) > 2: Solo se incluyen clientes con más de 2 compras
 --
 -- Ordenamiento:
@@ -26,7 +26,7 @@ SELECT
     COUNT(*)                               AS cantidad_compras
 FROM   GE.PEOPLE p
 JOIN   GE.BUY   b ON b.id_people = p.id
-WHERE  p.id_type_people = 1               -- solo clientes
+WHERE  p.id_type_people = 2               -- solo clientes
 GROUP  BY p.id, p.first_name, p.first_surname
 HAVING COUNT(*) > 2                       -- más de dos compras
 ORDER  BY cantidad_compras DESC;
