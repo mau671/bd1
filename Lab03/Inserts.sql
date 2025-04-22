@@ -1,6 +1,6 @@
 -- Inserts para TYPE_PEOPLE (debe ejecutarse primero por dependencias)
-INSERT INTO GE.TYPE_PEOPLE (id, name) VALUES (1, 'Cliente');
-INSERT INTO GE.TYPE_PEOPLE (id, name) VALUES (2, 'Empleado');
+INSERT INTO GE.TYPE_PEOPLE (id, name) VALUES (1, 'Employee');
+INSERT INTO GE.TYPE_PEOPLE (id, name) VALUES (2, 'Client');
 
 -- Tipo de teléfonos (requerido para PHONE)
 INSERT INTO GE.TYPE_PHONE (id, name) VALUES (1, 'Casa');
