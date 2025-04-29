@@ -1,3 +1,23 @@
+/**
+ * Script de Prueba para el Procedimiento get_person_phones
+ * ------------------------------------------------------
+ * Descripción:
+ *   Este script demuestra el uso del procedimiento ge.get_person_phones
+ *   mediante dos casos de prueba distintos que muestran la flexibilidad
+ *   del procedimiento para filtrar o mostrar todos los teléfonos de una persona.
+ *
+ * Casos de prueba:
+ *   1. Filtrar por tipo de teléfono: 
+ *      Muestra solo los teléfonos tipo "Celular" (ID=2) de la persona con ID 2
+ *
+ *   2. Sin filtro de tipo:
+ *      Muestra todos los teléfonos de la persona con ID 2, sin importar su tipo
+ *
+ * Formato de salida:
+ *   ID    Número          Tipo
+ *   --    ------          ----
+ *   (Datos formateados en columnas con ancho fijo)
+ */
 SET SERVEROUTPUT ON;
 DECLARE
     v_rc        SYS_REFCURSOR;
@@ -23,11 +43,11 @@ BEGIN
     END LOOP;
     CLOSE v_rc;
     
-    DBMS_OUTPUT.put_line(CHR(10)||'--- Prueba #2: TODOS los teléfonos de la persona 1 ---');
+    DBMS_OUTPUT.put_line(CHR(10)||'--- Prueba #2: TODOS los teléfonos de la persona 2 ---');
     
     -- Esta vez sin filtrar por tipo
     ge.get_person_phones(
-        p_person_id     => 1,
+        p_person_id     => 2,
         p_type_phone_id => NULL,
         p_result        => v_rc
     );
