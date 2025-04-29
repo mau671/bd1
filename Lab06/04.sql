@@ -1,3 +1,8 @@
+---
+    ---Descripción:
+    --- Cuando en el fetch del test se agregan menos campos se genera un error
+    --- donde se muestra que la cantidad de valores en el fetch es inválido.
+---
 SET SERVEROUTPUT ON;
 DECLARE
     CURSOR c IS

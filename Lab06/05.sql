@@ -1,3 +1,9 @@
+---
+    ---Descripción:
+    --- Cuando en el fetch del test los campos tienen diferente dominio
+    --- del que está obteniendo el cursor, se genera un error
+    --- donde se muestra que los tipos no son los mismos entre el fetch y las variables
+---
 SET SERVEROUTPUT ON;
 DECLARE
     CURSOR c IS
