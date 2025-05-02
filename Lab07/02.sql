@@ -1,5 +1,5 @@
-CREATE OR REPLACE PACKAGE staff_package IS
-  PROCEDURE newStaff(
+CREATE OR REPLACE PACKAGE employee_package IS
+  PROCEDURE newEmployee(
     p_employee_id     NUMBER,
     p_first_name      VARCHAR2,
     p_second_name     VARCHAR2,
@@ -11,8 +11,8 @@ CREATE OR REPLACE PACKAGE staff_package IS
 END staff_package;
 /
 
-CREATE OR REPLACE PACKAGE BODY staff_package IS
-  PROCEDURE newStaff(
+CREATE OR REPLACE PACKAGE BODY employee_package IS
+  PROCEDURE newEmployee(
     p_employee_id     NUMBER,
     p_first_name      VARCHAR2,
     p_second_name     VARCHAR2,
@@ -22,9 +22,9 @@ CREATE OR REPLACE PACKAGE BODY staff_package IS
     p_birthday        DATE
   ) IS
   BEGIN
-    INSERT INTO STAFF(ID, FIRST_NAME, SECOND_NAME, FIRST_SURNAME, SECOND_SURNAME, SALARY, BIRTHDAY)
+    INSERT INTO EMPLOYEE(ID, FIRST_NAME, SECOND_NAME, FIRST_SURNAME, SECOND_SURNAME, SALARY, BIRTHDAY)
     VALUES(p_employee_id, p_first_name, p_second_name, p_first_surname, p_second_surname, p_salary, p_birthday);
     COMMIT;
-  END newStaff;
-END staff_package;
+  END newEmployee;
+END employee_package;
 /

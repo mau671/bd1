@@ -39,7 +39,7 @@ BEGIN
   DBMS_SCHEDULER.create_job (
     job_name        => 'A01',
     job_type        => 'PLSQL_BLOCK',
-    job_action      => 'BEGIN GE.staff_package.newStaff(GE.staff_seq.NEXTVAL, ''John'', ''A'', ''Doe'', ''Smith'', 5000, SYSDATE); END;',
+    job_action      => 'BEGIN GE.employee_package.newEmployee(GE.employee_seq.NEXTVAL, ''John'', ''A'', ''Doe'', ''Smith'', 5000, SYSDATE); END;',
     start_date      => SYSTIMESTAMP,
     repeat_interval => 'freq=secondly',
     end_date        => NULL,
