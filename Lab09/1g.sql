@@ -6,6 +6,3 @@ INSERT INTO GE.EMPLOYEE (id, first_name, second_name, first_surname, second_surn
                          salary, birthday)
             VALUES (3, 'Gabriela', 'Paola', 'Nuñez', 'Sánchez',9700, DATE '2000-06-15');
 
--- Se intenta borrar un empleado con UN
-DELETE FROM GE.employee
-WHERE id = 2;

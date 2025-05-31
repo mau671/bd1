@@ -1,0 +1,1 @@
+REVOKE SELECT ON salary_per_employee FROM cu;
