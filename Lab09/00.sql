@@ -1,0 +1,36 @@
+CREATE TABLESPACE GE_Data
+    DATAFILE 'C:\app\dilan\oradata\DBProyecto\gedata01.dbf'
+    SIZE 10M
+    REUSE
+    AUTOEXTEND ON
+    NEXT 512k
+    MAXSIZE 200M;
+
+CREATE TABLESPACE GE_Index
+    DATAFILE 'C:\app\dilan\oradata\DBProyecto\geindex01.dbf'
+    SIZE 10M
+    REUSE
+    AUTOEXTEND ON
+    NEXT 512k
+    MAXSIZE 200M;
+
+-- Crear el esquema GE
+CREATE USER GE 
+    IDENTIFIED BY ge
+    DEFAULT TABLESPACE GE_Data
+    QUOTA 10M ON GE_Data
+    TEMPORARY TABLESPACE temp
+    QUOTA 5M ON SYSTEM
+    QUOTA 10M ON GE_Index;
+
+-- Crear el esquema CU
+CREATE USER CU 
+    IDENTIFIED BY cu
+    DEFAULT TABLESPACE GE_Data
+    QUOTA 10M ON GE_Data
+    TEMPORARY TABLESPACE temp
+    QUOTA 5M ON SYSTEM
+    QUOTA 10M ON GE_Index;
+
+GRANT CONNECT to GE;
+GRANT CREATE TABLE to GE;
